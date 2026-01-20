@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alumni Bridge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background: #0a3d62;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .card {
+      background: rgb(202, 198, 198);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #0a3d62;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #07406a;
+    }
+    footer {
+      background: #0a3d62;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Alumni Bridge</h1>
+  <p>Connecting Students with Successful Alumni</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#login">Alumni Login</a>
+    <a href="#alumni">Find Mentor</a>
+    <a href="#student">Students</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="student-login">
+  <div class="card">
+    <h2>Student Login</h2>
+    <p>Students can login to receive personalized mentorship and guidance.</p>
+    <form>
+      <input type="text" placeholder="Student Name" required />
+      <input type="text" placeholder="Branch" required />
+      <input type="number" placeholder="Year of Study" required />
+      <input type="text" placeholder="Career Goal (e.g., Software Engineer)" required />
+      <button type="submit">Login as Student</button>
+    </form>
+  </div>
+</section>
+
+<section id="login">
+  <div class="card">
+    <h2>Alumni / Mentor Login</h2>
+    <p>Alumni can login by entering their professional and academic details.</p>
+    <form>
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Current Role" required />
+      <input type="text" placeholder="Company" required />
+      <input type="number" placeholder="Year of Passing" required />
+      <button type="submit">Login as Alumni</button>
+    </form>
+  </div>
+</section>
+
+<section id="about">
+  <div class="card">
+    <h2>About the Platform</h2>
+    <p>
+      Alumni Bridge is a college-specific web platform where students connect
+      with alumni who are working in reputed positions across various industries.
+      It helps students receive career guidance, skill recommendations, and
+      mentorship from experienced alumni.
+    </p>
+  </div>
+</section>
+
+<section id="alumni">
+  <h2>Search Alumni by Desired Role</h2>
+  <input type="text" id="searchInput" placeholder="Search by role (e.g., Software Engineer, Data Scientist)" onkeyup="searchAlumni()" />
+  <div class="grid" id="alumniGrid">
+    <div class="card" data-role="software engineer">
+      <h3>Ravi Kumar</h3>
+      <p><strong>Role:</strong> Software Engineer</p>
+      <p><strong>Company:</strong> Google</p>
+      <p><strong>Expertise:</strong> Web Development, DSA</p>
+      <button>Request Mentorship</button>
+    </div>
+    <div class="card" data-role="data scientist">
+      <h3>Ananya Sharma</h3>
+      <p><strong>Role:</strong> Data Scientist</p>
+      <p><strong>Company:</strong> Microsoft</p>
+      <p><strong>Expertise:</strong> Machine Learning, Python</p>
+      <button>Request Mentorship</button>
+    </div>
+    <div class="card" data-role="product manager">
+      <h3>Arjun Reddy</h3>
+      <p><strong>Role:</strong> Product Manager</p>
+      <p><strong>Company:</strong> Amazon</p>
+      <p><strong>Expertise:</strong> Product Strategy, UX</p>
+      <button>Request Mentorship</button>
+    </div>
+  </div>
+</section>
+
+<script>
+function searchAlumni() {
+  const input = document.getElementById('searchInput').value.toLowerCase();
+  const cards = document.querySelectorAll('#alumniGrid .card');
+
+  cards.forEach(card => {
+    const role = card.getAttribute('data-role');
+    if (role.includes(input)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+<section id="student">
+  <div class="card">
+    <h2>For Students</h2>
+    <ul>
+      <li>View alumni profiles based on domain and expertise</li>
+      <li>Ask questions related to careers, skills, and higher studies</li>
+      <li>Request one-on-one mentorship from alumni</li>
+    </ul>
+    <h3>Ask a Question</h3>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <select required>
+        <option value="">Select Topic</option>
+        <option>Career Guidance</option>
+        <option>Skill Development</option>
+        <option>Higher Studies</option>
+      </select>
+      <textarea placeholder="Write your question here" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+
+<section id="alumni-actions">
+  <div class="card">
+    <h2>For Alumni</h2>
+    <ul>
+      <li>Register and mention current role, company, and expertise</li>
+      <li>Share guidance posts for juniors</li>
+      <li>Answer student queries</li>
+      <li>Mentor students for career growth</li>
+    </ul>
+    <h3>Share Guidance</h3>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="text" placeholder="Your Role & Company" required />
+      <textarea placeholder="Share your guidance or advice" required></textarea>
+      <button type="submit">Post Guidance</button>
+    </form>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="card">
+    <h2>Contact Us</h2>
+    <p>Email: alumnibridge@college.edu</p>
+    <p>Phone: +91 98765 43210</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Alumni Bridge | Built for IDEA SPRINT Hackathon</p>
+</footer>
+
+</body>
+</html>
